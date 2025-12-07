@@ -1,17 +1,27 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMugHot } from "@fortawesome/free-solid-svg-icons";
+import { faMugHot, faTimes } from "@fortawesome/free-solid-svg-icons";
 import "../styles/CreateForumPost.css";
 
-const CreateForumPost = () => {
+const CreateForumPost = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
   return (
-    <div className="forum-post">
-      <input className="input-title" defaultValue="Title" />
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="forum-post" onClick={(e) => e.stopPropagation()}>
+        <button className="close-button" onClick={onClose}>
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
 
-      <textarea className="input-content" defaultValue="Content" />
+        <h2 className="modal-title">Create New Post</h2>
 
-      <button className="post-button">
-        <FontAwesomeIcon icon={faMugHot} />
-      </button>
+        <input className="input-title" placeholder="Title" />
+
+        <textarea className="input-content" placeholder="Content" />
+
+        <button className="post-button">
+          <FontAwesomeIcon icon={faMugHot} />
+        </button>
+      </div>
     </div>
   );
 };
