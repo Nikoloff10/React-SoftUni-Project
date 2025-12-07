@@ -1,3 +1,5 @@
+import "../styles/HistoryOfCompany.css";
+
 const HistoryOfCompany = () => {
   return (
     <section className="history-section">

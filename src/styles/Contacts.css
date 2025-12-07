@@ -1,0 +1,39 @@
+.contacts-section {
+  padding: 3rem 1rem;
+  background-color: white;
+}
+
+.contacts-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contacts-content h2 {
+  color: #6B4423;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.contact-item {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.contact-item h3 {
+  color: #6B4423;
+  margin-bottom: 0.5rem;
+}
+
+.contact-item p {
+  color: #666;
+  line-height: 1.6;
+}

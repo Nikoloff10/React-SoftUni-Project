@@ -1,11 +1,13 @@
+import "../styles/NavBar.css";
+
 const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-content">
         <div className="navbar-links">
-          <a href="/">Home</a>
-          <a href="/catalog">Catalog</a>
-          <a href="/forum">Forum</a>
+          <a href="/">HOME</a>
+          <a href="/catalog">CATALOG</a>
+          <a href="/forum">FORUM</a>
         </div>
 
         <div className="navbar-auth">

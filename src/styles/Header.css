@@ -1,0 +1,24 @@
+.header {
+  background: linear-gradient(135deg, #6B4423 0%, #3E2723 100%);
+  color: rgb(247, 227, 173);
+  padding: 2rem 1rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-title {
+  font-size: 2.5rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.header-tagline {
+  font-size: 1.2rem;
+  margin: 0.5rem 0 0 0;
+  opacity: 0.9;
+}

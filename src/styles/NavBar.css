@@ -1,0 +1,112 @@
+.navbar {
+  background-color: #ffc2a6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar-links a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar-links a:hover {
+  color: rgb(148, 126, 66);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+
+.navbar-auth {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btn-login,
+.btn-register {
+  padding: 0.5rem 1.5rem;
+  border-radius: 9px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+  background-color: #6B4423;
+  color: rgb(247, 227, 173);
+}
+
+.btn-login {
+  color: rgb(247, 227, 173);
+  border: 1px solid #6B4423;
+}
+
+.btn-login:hover {
+  background-color: #563619;
+  color: white;
+}
+
+
+.btn-register:hover {
+  background-color: #563619;
+  color: white;
+}
+
+.user-profile {
+  text-decoration: none;
+}
+
+.user-icon-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6B4423, #D4A574);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.user-icon-placeholder:hover {
+  transform: scale(1.1);
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-logout {
+  padding: 0.5rem 1rem;
+  border-radius: 9px;
+  border: 1px solid #6B4423;
+  background-color: transparent;
+  color: #6B4423;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-logout:hover {
+  background-color: #dd324f;
+  color: rgb(148, 126, 66);
+}

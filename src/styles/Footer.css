@@ -1,0 +1,32 @@
+.footer {
+  background: linear-gradient(135deg, #6B4423 0%, #3E2723 100%);
+  color: rgb(247, 227, 173);
+  padding: 2rem 1rem;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-content p {
+  margin: 0 0 1rem 0;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.footer-links a {
+  color: rgb(247, 227, 173);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #D4A574;
+}
