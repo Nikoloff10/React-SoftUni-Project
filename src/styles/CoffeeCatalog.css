@@ -1,0 +1,23 @@
+.coffee-catalog {
+  padding: 3rem 1rem;
+  background-color: #f9f9f9;
+  min-height: 60vh;
+}
+
+.catalog-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.catalog-content h2 {
+  color: #6B4423;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
