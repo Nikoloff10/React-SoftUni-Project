@@ -1,14 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../styles/NavBar.css";
 
 const NavBar = () => {
+  const location = useLocation();
+
   return (
     <nav className="navbar">
       <div className="navbar-content">
         <div className="navbar-links">
-          <Link to="/">HOME</Link>
-          <Link to="/catalog">CATALOG</Link>
-          <Link to="/forum">FORUM</Link>
+          {location.pathname !== "/" && <Link to="/">HOME</Link>}
+          {location.pathname !== "/catalog" && (
+            <Link to="/catalog">CATALOG</Link>
+          )}
+          {location.pathname !== "/forum" && <Link to="/forum">FORUM</Link>}
         </div>
 
         <div className="navbar-auth">
