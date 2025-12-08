@@ -16,12 +16,12 @@ const NavBar = () => {
         </div>
 
         <div className="navbar-auth">
-          <a href="/login" className="btn-login">
+          <Link to={"/login"} className="btn-login">
             Login
-          </a>
-          <a href="/register" className="btn-register">
+          </Link>
+          <Link to={"/register"} className="btn-register">
             Register
-          </a>
+          </Link>
           <div className="user-menu">
             <a href="/profile" className="user-profile">
               <div className="user-icon-placeholder">U</div>

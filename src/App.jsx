@@ -5,6 +5,8 @@ import Home from "./components/Home";
 import CoffeeCatalog from "./components/CoffeeCatalog";
 import ForumPostsCatalog from "./components/ForumPostsCatalog";
 import Footer from "./components/Footer";
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/catalog" element={<CoffeeCatalog />} />
         <Route path="/forum" element={<ForumPostsCatalog />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
 
       <Footer />
