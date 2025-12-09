@@ -3,6 +3,7 @@ import "../styles/NavBar.css";
 
 const NavBar = () => {
   const location = useLocation();
+  const username = localStorage.getItem("username");
 
   return (
     <nav className="navbar">
@@ -24,7 +25,9 @@ const NavBar = () => {
           </Link>
           <div className="user-menu">
             <a href="/profile" className="user-profile">
-              <div className="user-icon-placeholder">U</div>
+              <div className="user-icon-placeholder">
+                {username ? username[0].toUpperCase() : "?"}
+              </div>
             </a>
             <button className="btn-logout">Logout</button>
           </div>
