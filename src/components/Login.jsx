@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "../styles/Login.css";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "./UserContext";
 
 const Login = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,14 +35,12 @@ const Login = () => {
       const result = await response.json();
 
       if (!response.ok) {
-        setError(result.message || "Login failed");
+        setError(result.message || "Login failed.");
         setIsLoading(false);
         return;
       }
 
-      localStorage.setItem("accessToken", result.accessToken);
-      localStorage.setItem("userId", result._id);
-      localStorage.setItem("userEmail", result.email);
+      login(result);
 
       navigate("/");
     } catch (err) {
