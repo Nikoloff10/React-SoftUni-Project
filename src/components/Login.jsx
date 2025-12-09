@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import "../styles/Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "./UserContext";
+import { UserContext } from "../contexts/UserContext";
 
 const Login = () => {
   const [error, setError] = useState("");
