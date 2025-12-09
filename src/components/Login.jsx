@@ -15,7 +15,7 @@ const Login = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    if (!data.username || !data.password) {
+    if (!data.email || !data.password) {
       setError("All fields are required.");
       setIsLoading(false);
       return;
@@ -40,7 +40,7 @@ const Login = () => {
 
       localStorage.setItem("accessToken", result.accessToken);
       localStorage.setItem("userId", result._id);
-      localStorage.setItem("username", result.username);
+      localStorage.setItem("userEmail", result.email);
 
       navigate("/");
     } catch (err) {
@@ -57,12 +57,12 @@ const Login = () => {
           {error && <div className="error-message">{error}</div>}
 
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="email">Email</label>
             <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Enter your username"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
               required
             />
           </div>

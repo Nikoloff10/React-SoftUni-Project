@@ -1,12 +1,76 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Register.css";
 
 const Register = () => {
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+
+    if (
+      !data.username ||
+      !data.email ||
+      !data.firstName ||
+      !data.lastName ||
+      !data.password ||
+      !data.confirmPassword
+    ) {
+      setError("All fields are required.");
+      setIsLoading(false);
+      return;
+    }
+
+    if (data.password !== data.confirmPassword) {
+      setError("Passwords do not match.");
+      setIsLoading(false);
+      return;
+    }
+
+    delete data.confirmPassword;
+
+    try {
+      const response = await fetch("http://localhost:3030/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        setError(result.message || "Registration failed");
+        setIsLoading(false);
+        return;
+      }
+
+      localStorage.setItem("accessToken", result.accessToken);
+      localStorage.setItem("userId", result._id);
+      localStorage.setItem("username", result.username);
+
+      navigate("/");
+    } catch (err) {
+      setError("Network error. Please try again.");
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="register-page">
       <div className="register-container">
         <h2>Create Account</h2>
-        <form className="register-form">
+        <form className="register-form" onSubmit={handleSubmit}>
+          {error && <div className="error-message">{error}</div>}
+
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input
@@ -75,12 +139,12 @@ const Register = () => {
             />
           </div>
 
-          <button type="submit" className="register-btn">
-            Register
+          <button type="submit" className="register-btn" disabled={isLoading}>
+            {isLoading ? "Registering..." : "Register"}
           </button>
 
           <p className="login-link">
-            Already have an account? <Link to={"/login"}>Login here</Link>
+            Already have an account? <Link to="/login">Login here</Link>
           </p>
         </form>
       </div>
