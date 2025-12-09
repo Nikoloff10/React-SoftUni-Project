@@ -17,23 +17,23 @@ const NavBar = () => {
   const handleConfirmLogout = async () => {
     const accessToken = localStorage.getItem("accessToken");
 
-    try {
-      await fetch("http://localhost:3030/users/logout", {
-        method: "GET",
-        headers: {
-          "X-Authorization": accessToken,
-        },
-      });
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("userId");
-      localStorage.removeItem("username");
-      navigate("/");
-    } catch (err) {
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("userId");
-      localStorage.removeItem("username");
-      navigate("/");
+    if (accessToken) {
+      try {
+        await fetch("http://localhost:3030/users/logout", {
+          method: "GET",
+          headers: {
+            "X-Authorization": accessToken,
+          },
+        });
+      } catch (err) {
+        console.log(err);
+      }
     }
+    setShowLogoutModal(false);
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("username");
+    navigate("/");
   };
 
   const handleCancelLogout = () => {

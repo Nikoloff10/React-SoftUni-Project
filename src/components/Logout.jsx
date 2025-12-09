@@ -1,3 +1,4 @@
+import "../styles/Logout.css";
 const Logout = ({ onConfirm, onCancel }) => {
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
