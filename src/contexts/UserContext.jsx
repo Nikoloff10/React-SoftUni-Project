@@ -33,14 +33,14 @@ export const UserProvider = ({ children }) => {
       accessToken: userData.accessToken,
       userId: userData._id,
       username: userData.username,
-      email: userData.eimal,
+      email: userData.email,
     });
   };
 
   const logout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("userId");
-    lcoalStorage.removeItem("username");
+    localStorage.removeItem("username");
     localStorage.removeItem("userEmail");
 
     setUser(null);

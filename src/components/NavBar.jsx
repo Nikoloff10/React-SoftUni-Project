@@ -1,11 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/NavBar.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../contexts/UserContext.jsx";
 import Logout from "./Logout";
 
 const NavBar = () => {
   const location = useLocation();
-  const username = localStorage.getItem("username");
+  const { user, logout } = useContext(UserContext);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const navigate = useNavigate();
@@ -30,9 +31,7 @@ const NavBar = () => {
       }
     }
     setShowLogoutModal(false);
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("username");
+    logout();
     navigate("/");
   };
 
@@ -53,22 +52,30 @@ const NavBar = () => {
           </div>
 
           <div className="navbar-auth">
-            <Link to={"/login"} className="btn-login">
-              Login
-            </Link>
-            <Link to={"/register"} className="btn-register">
-              Register
-            </Link>
-            <div className="user-menu">
-              <a href="/profile" className="user-profile">
-                <div className="user-icon-placeholder">
-                  {username ? username[0].toUpperCase() : "?"}
-                </div>
-              </a>
-              <button className="btn-logout" onClick={handleLogoutClick}>
-                Logout
-              </button>
-            </div>
+            {!user && (
+              <>
+                <Link to={"/login"} className="btn-login">
+                  Login
+                </Link>
+                <Link to={"/register"} className="btn-register">
+                  Register
+                </Link>
+              </>
+            )}
+
+            {user && (
+              <div className="user-menu">
+                <a href="/profile" className="user-profile">
+                  <div className="user-icon-placeholder">
+                    {/* A default profile pic must be implemented for non-auth users: */}
+                    {user.username ? user.username[0].toUpperCase() : "?"}
+                  </div>
+                </a>
+                <button className="btn-logout" onClick={handleLogoutClick}>
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </nav>
