@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 import "../styles/Register.css";
 
 const Register = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,14 +50,12 @@ const Register = () => {
       const result = await response.json();
 
       if (!response.ok) {
-        setError(result.message || "Registration failed");
+        setError(result.message || "Registration failed.");
         setIsLoading(false);
         return;
       }
 
-      localStorage.setItem("accessToken", result.accessToken);
-      localStorage.setItem("userId", result._id);
-      localStorage.setItem("username", result.username);
+      login(result);
 
       navigate("/");
     } catch (err) {
