@@ -65,12 +65,12 @@ const NavBar = () => {
 
             {user && (
               <div className="user-menu">
-                <a href="/profile" className="user-profile">
+                <Link to="/profile" className="user-profile">
                   <div className="user-icon-placeholder">
                     {/* A default profile pic must be implemented for non-auth users: */}
                     {user.username ? user.username[0].toUpperCase() : "?"}
                   </div>
-                </a>
+                </Link>
                 <button className="btn-logout" onClick={handleLogoutClick}>
                   Logout
                 </button>
