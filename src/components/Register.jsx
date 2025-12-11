@@ -37,6 +37,8 @@ const Register = () => {
     }
 
     delete data.confirmPassword;
+    data.imageURL = "";
+    data.description = "";
 
     try {
       const response = await fetch("http://localhost:3030/users/register", {
@@ -48,7 +50,7 @@ const Register = () => {
       });
 
       const result = await response.json();
-
+      console.log(result);
       if (!response.ok) {
         setError(result.message || "Registration failed.");
         setIsLoading(false);
