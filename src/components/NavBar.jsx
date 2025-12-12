@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/NavBar.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext.jsx";
 import Logout from "./Logout";
 
@@ -8,8 +8,43 @@ const NavBar = () => {
   const location = useLocation();
   const { user, logout } = useContext(UserContext);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [profileImage, setProfileImage] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProfileImage = async () => {
+      if (!user) {
+        setProfileImage("");
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `http://localhost:3030/data/userProfiles?where=userId%3D%22${user.userId}%22`,
+          {
+            headers: {
+              "X-Authorization": user.accessToken,
+            },
+          }
+        );
+
+        if (response.ok) {
+          const profiles = await response.json();
+          if (profiles.length > 0 && profiles[0].imageURL) {
+            setProfileImage(profiles[0].imageURL);
+          } else {
+            setProfileImage("");
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching profile image:", err);
+        setProfileImage("");
+      }
+    };
+
+    fetchProfileImage();
+  }, [user, location.pathname]);
 
   const handleLogoutClick = () => {
     setShowLogoutModal(true);
@@ -66,10 +101,17 @@ const NavBar = () => {
             {user && (
               <div className="user-menu">
                 <Link to="/profile" className="user-profile">
-                  <div className="user-icon-placeholder">
-                    {/* A default profile pic must be implemented for non-auth users: */}
-                    {user.username ? user.username[0].toUpperCase() : "?"}
-                  </div>
+                  {profileImage ? (
+                    <img
+                      src={profileImage}
+                      alt="Profile"
+                      className="user-profile-img"
+                    />
+                  ) : (
+                    <div className="user-icon-placeholder">
+                      {user.username ? user.username[0].toUpperCase() : "?"}
+                    </div>
+                  )}
                 </Link>
                 <button className="btn-logout" onClick={handleLogoutClick}>
                   Logout
