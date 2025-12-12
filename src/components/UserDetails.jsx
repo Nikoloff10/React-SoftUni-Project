@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
+import "../styles/UserDetails.css";
 
 const UserDetails = () => {
   const { user, login } = useContext(UserContext);
