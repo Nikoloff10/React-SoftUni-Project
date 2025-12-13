@@ -85,7 +85,7 @@
   border-radius: 5px;
   font-size: 1rem;
   font-family: inherit;
-  resize: vertical;
+  resize: none;
   margin-bottom: 1rem;
   box-sizing: border-box;
 }
