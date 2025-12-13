@@ -21,7 +21,7 @@ const ForumPost = ({ post }) => {
         <div className="post-meta">
           <span className="author">by {post.author}</span>
           <span className="date">
-            {new Date(post.createdAt).toLocaleDateString()}
+            {new Date(post.createdAt).toLocaleDateString("en-GB")}
           </span>
         </div>
       </div>

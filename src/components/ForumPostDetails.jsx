@@ -39,7 +39,7 @@ const ForumPostDetails = () => {
       );
       if (!response.ok) throw new Error("Failed to fetch comments.");
       const data = await response.json();
-     
+
       const sortedComments = data.sort(
         (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
       );
@@ -101,7 +101,7 @@ const ForumPostDetails = () => {
         <div className="post-meta">
           <span className="author">By {post.author}</span>
           <span className="date">
-            {new Date(post.createdAt).toLocaleDateString()}
+            {new Date(post.createdAt).toLocaleDateString("en-GB")}
           </span>
         </div>
         <div className="post-body">{post.content}</div>
@@ -138,7 +138,7 @@ const ForumPostDetails = () => {
                 <div className="comment-header">
                   <span className="comment-author">{comment.author}</span>
                   <span className="comment-date">
-                    {new Date(comment.createdAt).toLocaleDateString()}
+                    {new Date(comment.createdAt).toLocaleDateString("en-GB")}
                   </span>
                 </div>
                 <p className="comment-content">{comment.content}</p>
