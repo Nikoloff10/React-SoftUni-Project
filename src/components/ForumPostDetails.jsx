@@ -11,6 +11,10 @@ const ForumPostDetails = () => {
   const [comments, setComments] = useState([]);
   const [commentContent, setCommentContent] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editTitle, setEditTitle] = useState("");
+  const [editContent, setEditContent] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     fetchPostDetails();
@@ -46,6 +50,64 @@ const ForumPostDetails = () => {
       setComments(sortedComments);
     } catch (error) {
       console.error("Error fetching comments:", error);
+    }
+  };
+
+  const handleEditClick = () => {
+    setEditTitle(post.title);
+    setEditContent(post.content);
+    setIsEditing(true);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+    setEditTitle("");
+    setEditContent("");
+  };
+
+  const handleSaveEdit = async (e) => {
+    e.preventDefault();
+    if (!editTitle.trim() || !editContent.trim()) {
+      alert("Title and content cannot be empty.");
+      return;
+    }
+
+    setIsSaving(true);
+
+    try {
+      const response = await fetch(
+        `http://localhost:3030/data/forumPosts/${postId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Authorization": user.accessToken,
+          },
+          body: JSON.stringify({
+            title: editTitle,
+            content: editContent,
+            author: post.author,
+            authorId: post.authorId,
+            createdAt: post.createdAt,
+          }),
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to update post.");
+
+      setPost({
+        ...post,
+        title: editTitle,
+        content: editContent,
+      });
+      setIsEditing(false);
+      setEditTitle("");
+      setEditContent("");
+    } catch (error) {
+      console.error("Error updating post:", error);
+      alert("Failed to update post. Please try again.");
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -97,14 +159,59 @@ const ForumPostDetails = () => {
       </button>
 
       <article className="post-content">
-        <h1 className="post-title">{post.title}</h1>
-        <div className="post-meta">
-          <span className="author">By {post.author}</span>
-          <span className="date">
-            {new Date(post.createdAt).toLocaleDateString("en-GB")}
-          </span>
-        </div>
-        <div className="post-body">{post.content}</div>
+        {isEditing ? (
+          <form onSubmit={handleSaveEdit} className="edit-post-form">
+            <input
+              type="text"
+              className="edit-title-input"
+              value={editTitle}
+              onChange={(e) => setEditTitle(e.target.value)}
+              placeholder="Post title..."
+            />
+            <textarea
+              className="edit-content-input"
+              value={editContent}
+              onChange={(e) => setEditContent(e.target.value)}
+              placeholder="Post content..."
+              rows="10"
+            />
+            <div className="edit-buttons">
+              <button
+                type="submit"
+                className="save-edit-btn"
+                disabled={isSaving}
+              >
+                {isSaving ? "Saving..." : "Save Changes"}
+              </button>
+              <button
+                type="button"
+                className="cancel-edit-btn"
+                onClick={handleCancelEdit}
+                disabled={isSaving}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        ) : (
+          <>
+            <div className="post-header">
+              <h1 className="post-title">{post.title}</h1>
+              {user && user.userId === post.authorId && (
+                <button className="edit-post-btn" onClick={handleEditClick}>
+                  Edit Post
+                </button>
+              )}
+            </div>
+            <div className="post-meta">
+              <span className="author">By {post.author}</span>
+              <span className="date">
+                {new Date(post.createdAt).toLocaleDateString("en-GB")}
+              </span>
+            </div>
+            <div className="post-body">{post.content}</div>
+          </>
+        )}
       </article>
 
       <section className="comments-section">

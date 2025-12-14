@@ -1,9 +1,11 @@
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 import "../styles/UserDetails.css";
 
 const UserDetails = () => {
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState("");
@@ -309,13 +311,21 @@ const UserDetails = () => {
                       ? post.title.substring(0, 30) + "..."
                       : post.title}
                   </span>
-                  <button
-                    onClick={() => handleDeletePost(post._id, post.title)}
-                    className="btn-delete-post"
-                    disabled={deletingPostId === post._id}
-                  >
-                    {deletingPostId === post._id ? "Deleting..." : "Delete"}
-                  </button>
+                  <div className="post-actions">
+                    <button
+                      onClick={() => navigate(`/forum/${post._id}`)}
+                      className="btn-edit-post"
+                    >
+                      See/Edit
+                    </button>
+                    <button
+                      onClick={() => handleDeletePost(post._id, post.title)}
+                      className="btn-delete-post"
+                      disabled={deletingPostId === post._id}
+                    >
+                      {deletingPostId === post._id ? "Deleting..." : "Delete"}
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
