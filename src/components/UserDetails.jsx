@@ -1,11 +1,9 @@
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { useNavigate } from "react-router-dom";
 import "../styles/UserDetails.css";
 
 const UserDetails = () => {
-  const { user, login } = useContext(UserContext);
-  const navigate = useNavigate();
+  const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState("");
@@ -19,14 +17,9 @@ const UserDetails = () => {
   });
 
   useEffect(() => {
-    if (!user) {
-      navigate("/login");
-      return;
-    }
-
     loadUserData();
     loadUserPosts();
-  }, [user, navigate]);
+  }, []);
 
   const loadUserData = async () => {
     if (!user) return;
