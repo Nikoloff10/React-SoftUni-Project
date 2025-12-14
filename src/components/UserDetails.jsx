@@ -170,7 +170,7 @@ const UserDetails = () => {
   return (
     <div className="user-details-page">
       <div className="user-details-container">
-        <h2>User Profile</h2>
+        <h2>{user.username}'s Profile</h2>
 
         {error && <div className="error-message">{error}</div>}
         {success && <div className="success-message">{success}</div>}

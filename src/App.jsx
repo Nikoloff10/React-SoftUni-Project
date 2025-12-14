@@ -16,15 +16,17 @@ function App() {
       <Header />
       <NavBar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/catalog" element={<CoffeeCatalog />} />
-        <Route path="/forum" element={<ForumPostsCatalog />} />
-        <Route path="/forum/:postId" element={<ForumPostDetails />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<UserDetails />} />
-      </Routes>
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/catalog" element={<CoffeeCatalog />} />
+          <Route path="/forum" element={<ForumPostsCatalog />} />
+          <Route path="/forum/:postId" element={<ForumPostDetails />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<UserDetails />} />
+        </Routes>
+      </main>
 
       <Footer />
     </div>

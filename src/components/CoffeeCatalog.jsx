@@ -8,6 +8,11 @@ const CoffeeCatalog = () => {
         <h2>Our Coffee Collection</h2>
         <div className="products-grid">
           <CoffeeProduct />
+          <CoffeeProduct />
+          <CoffeeProduct />
+          <CoffeeProduct />
+          <CoffeeProduct />
+          <CoffeeProduct />
         </div>
       </div>
     </section>

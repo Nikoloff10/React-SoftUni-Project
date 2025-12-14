@@ -41,7 +41,7 @@ const ForumPostDetails = () => {
       const data = await response.json();
 
       const sortedComments = data.sort(
-        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
       setComments(sortedComments);
     } catch (error) {
@@ -136,7 +136,7 @@ const ForumPostDetails = () => {
             comments.map((comment, index) => (
               <div key={index} className="comment">
                 <div className="comment-header">
-                  <span className="comment-author">{comment.author}</span>
+                  <span className="comment-author">by {comment.author}</span>
                   <span className="comment-date">
                     {new Date(comment.createdAt).toLocaleDateString("en-GB")}
                   </span>
