@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import UserDetails from "./components/UserDetails";
+import ShoppingCart from "./components/ShoppingCart";
 import ProtectedRoute from "./components/ProtectedRoute";
 import GuestRoute from "./components/GuestRoute";
 
@@ -45,6 +46,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <UserDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute>
+                <ShoppingCart />
               </ProtectedRoute>
             }
           />

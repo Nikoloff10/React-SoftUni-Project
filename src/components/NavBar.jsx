@@ -2,11 +2,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/NavBar.css";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext.jsx";
+import { CartContext } from "../contexts/CartContext.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Logout from "./Logout";
 
 const NavBar = () => {
   const location = useLocation();
   const { user, logout } = useContext(UserContext);
+  const { getTotalItems } = useContext(CartContext);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [profileImage, setProfileImage] = useState("");
 
@@ -85,6 +89,17 @@ const NavBar = () => {
             )}
             {location.pathname !== "/forum" && <Link to="/forum">FORUM</Link>}
           </div>
+
+          {user && (
+            <Link to="/cart" className="cart-link">
+              <div className="cart-icon">
+                <FontAwesomeIcon icon={faShoppingCart} />
+                {getTotalItems() > 0 && (
+                  <span className="cart-badge">{getTotalItems()}</span>
+                )}
+              </div>
+            </Link>
+          )}
 
           <div className="navbar-auth">
             {!user && (

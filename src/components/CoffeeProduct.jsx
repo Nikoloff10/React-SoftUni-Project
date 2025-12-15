@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CartContext } from "../contexts/CartContext";
 import "../styles/CoffeeProduct.css";
 
 const CoffeeProduct = ({ title, price, origin, roast, description, image }) => {
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useContext(CartContext);
 
   const handleIncrement = () => {
     setQuantity((prev) => prev + 1);
@@ -13,8 +15,18 @@ const CoffeeProduct = ({ title, price, origin, roast, description, image }) => {
   };
 
   const handleAddToCart = () => {
-    // This will be connected to cart functionality later
-    console.log(`Added ${quantity} x ${title} to cart`);
+    addToCart({
+      title,
+      price,
+      origin,
+      roast,
+      description,
+      image,
+      quantity,
+    });
+
+    alert(`Added ${quantity} x ${title} to cart!`);
+    setQuantity(1);
   };
 
   return (
