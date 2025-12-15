@@ -73,6 +73,7 @@ const CoffeeCatalog = () => {
           {coffeeProducts.map((coffee) => (
             <CoffeeProduct
               key={coffee.id}
+              id={coffee.id}
               title={coffee.title}
               price={coffee.price}
               origin={coffee.origin}

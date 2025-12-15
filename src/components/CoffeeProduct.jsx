@@ -1,10 +1,20 @@
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
 import "../styles/CoffeeProduct.css";
 
-const CoffeeProduct = ({ title, price, origin, roast, description, image }) => {
+const CoffeeProduct = ({
+  id,
+  title,
+  price,
+  origin,
+  roast,
+  description,
+  image,
+}) => {
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   const handleIncrement = () => {
     setQuantity((prev) => prev + 1);
@@ -29,9 +39,17 @@ const CoffeeProduct = ({ title, price, origin, roast, description, image }) => {
     setQuantity(1);
   };
 
+  const handleViewDetails = () => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <div className="coffee-product">
-      <div className="product-image-container">
+      <div
+        className="product-image-container"
+        onClick={handleViewDetails}
+        style={{ cursor: "pointer" }}
+      >
         {image ? (
           <img src={image} alt={title} className="product-image" />
         ) : (
@@ -41,7 +59,9 @@ const CoffeeProduct = ({ title, price, origin, roast, description, image }) => {
         )}
       </div>
       <div className="product-info">
-        <h3>{title}</h3>
+        <h3 onClick={handleViewDetails} style={{ cursor: "pointer" }}>
+          {title}
+        </h3>
         <p className="description">{description}</p>
         <div className="product-details">
           <p className="origin">Origin: {origin}</p>
