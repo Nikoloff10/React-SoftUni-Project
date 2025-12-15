@@ -11,7 +11,7 @@ const CoffeeCatalog = () => {
       roast: "Light Roast",
       description:
         "Floral and fruity with notes of blueberry and jasmine. A bright, clean cup perfect for pour-over.",
-      image: null, // Image to be placed here
+      image: "photos/CoffeePhotos/StarLightElixir.png",
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ const CoffeeCatalog = () => {
       roast: "Medium Roast",
       description:
         "Smooth and balanced with caramel sweetness and nutty undertones. A classic everyday coffee.",
-      image: null, // Image to be placed here
+      image: "photos/CoffeePhotos/OpalEstateSelect.png",
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ const CoffeeCatalog = () => {
       roast: "Dark Roast",
       description:
         "Full-bodied with earthy, herbal notes and low acidity. Rich and bold with a syrupy mouthfeel.",
-      image: null, // Image to be placed here
+      image: "photos/CoffeePhotos/GrandCruNocturne.png",
     },
     {
       id: 4,
@@ -41,7 +41,7 @@ const CoffeeCatalog = () => {
       roast: "Medium Roast",
       description:
         "Crisp and clean with citrus notes and chocolate finish. Well-balanced acidity and sweetness.",
-      image: null, // Image to be placed here
+      image: "photos/CoffeePhotos/VelvetCrownBlend.png",
     },
     {
       id: 5,
@@ -51,7 +51,7 @@ const CoffeeCatalog = () => {
       roast: "Medium-Dark Roast",
       description:
         "Low acidity with sweet, nutty flavors and hints of chocolate. Perfect for espresso blends.",
-      image: null, // Image to be placed here
+      image: "photos/CoffeePhotos/CaramelZenith.png",
     },
     {
       id: 6,
@@ -61,7 +61,7 @@ const CoffeeCatalog = () => {
       roast: "Light-Medium Roast",
       description:
         "Bright and wine-like with berry notes and complex acidity. A sophisticated and vibrant cup.",
-      image: null, // Image to be placed here
+      image: "photos/CoffeePhotos/SaharaDusk.png",
     },
   ];
 
