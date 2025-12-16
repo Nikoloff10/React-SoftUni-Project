@@ -13,6 +13,7 @@ import UserDetails from "./components/UserDetails";
 import ShoppingCart from "./components/ShoppingCart";
 import ProtectedRoute from "./components/ProtectedRoute";
 import GuestRoute from "./components/GuestRoute";
+import About from "./components/About";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/catalog" element={<CoffeeCatalog />} />
           <Route
             path="/product/:productId"

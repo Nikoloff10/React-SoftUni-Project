@@ -88,6 +88,7 @@ const NavBar = () => {
               <Link to="/catalog">CATALOG</Link>
             )}
             {location.pathname !== "/forum" && <Link to="/forum">FORUM</Link>}
+            {location.pathname !== "/about" && <Link to="/about">ABOUT</Link>}
           </div>
 
           {user && (
