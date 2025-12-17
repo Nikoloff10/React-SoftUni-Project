@@ -14,6 +14,7 @@ import ShoppingCart from "./components/ShoppingCart";
 import ProtectedRoute from "./components/ProtectedRoute";
 import GuestRoute from "./components/GuestRoute";
 import About from "./components/About";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
@@ -68,6 +69,7 @@ function App() {
       </main>
 
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }
